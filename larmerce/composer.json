@@ -31,6 +31,7 @@
         "hyperf/memory": "~2.2.0",
         "hyperf/model-cache": "~2.2.0",
         "hyperf/process": "^2.2",
+        "hyperf/redis": "^2.2",
         "hyperf/tracer": "~2.2.0",
         "hyperf/view": "^2.2",
         "hyperf/view-engine": "^2.2"
