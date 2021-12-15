@@ -8,9 +8,13 @@ services:
         - "9501:9501"
         - "9502:9502"
       volumes:        
-        - "./larmerce:/larmerce:cached" # 挂载文件访问慢 :cached            
-      command: ["php", "bin/hyperf.php", "start"]        
+        - "./larmerce:/larmerce" # 挂载文件访问慢 :cached            
+      command: >
+        bash -c "rm -rf /larmerce/runtime/container && php bin/hyperf.php start"
       privileged: true
+      depends_on:
+        - "larmerce-redis"
+        - "larmerce-mysql"
       networks:
         - larmerce-network
     larmerce-redis:

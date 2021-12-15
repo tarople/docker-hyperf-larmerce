@@ -5,7 +5,7 @@ namespace App\Crontab;
 use Hyperf\Crontab\Annotation\Crontab;
 
 /**
- * @Crontab(name="Echo", rule="* * * * * *", callback="execute", memo="这是一个示例的定时任务")
+ * // @Crontab(name="Echo", rule="* * * * *", callback="execute", memo="这是一个示例的定时任务")
  */
 class EchoCrontab 
 {
@@ -16,6 +16,6 @@ class EchoCrontab
 
     public function isEnable(): bool
     {
-        return true;
+        return false;
     }
 }
