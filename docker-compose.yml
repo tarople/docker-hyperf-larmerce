@@ -13,8 +13,8 @@ services:
         bash -c "rm -rf /larmerce/runtime/container && php bin/hyperf.php start"
       privileged: true
       depends_on:
-        - "larmerce-redis"
         - "larmerce-mysql"
+        - "larmerce-redis"
       networks:
         - larmerce-network
     larmerce-redis:
