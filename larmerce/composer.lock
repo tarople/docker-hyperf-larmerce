@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9fe06e205f7f531230be5bb30bf64b9c",
+    "content-hash": "51ad702fdf31fafcbb7e8519b477a8e0",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -1882,6 +1882,67 @@
             "time": "2021-07-18T06:50:14+00:00"
         },
         {
+            "name": "hyperf/filesystem",
+            "version": "v2.2.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyperf/filesystem.git",
+                "reference": "69e9704f0c71a68ba3d59e1526e25cc2de11ac82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyperf/filesystem/zipball/69e9704f0c71a68ba3d59e1526e25cc2de11ac82",
+                "reference": "69e9704f0c71a68ba3d59e1526e25cc2de11ac82",
+                "shasum": ""
+            },
+            "require": {
+                "hyperf/di": "~2.2.0",
+                "league/flysystem": "^1.0|^2.0",
+                "php": ">=7.2"
+            },
+            "suggest": {
+                "ext-swoole": "Required to use swoole AliyunOssHook.",
+                "hyperf/flysystem-oss": "Required to use aliyun oss adapter when use `league/flysystem` v2.0",
+                "hyperf/guzzle": "required to use s3 adapter",
+                "league/flysystem-aws-s3-v3": "required to use s3 adapter",
+                "league/flysystem-memory": "required to use memory adapter",
+                "overtrue/flysystem-cos": "Required to use cos adapter (^3.0|^4.0)",
+                "overtrue/flysystem-qiniu": "Required to use qiniu adapter (^1.0|^2.0)",
+                "xxtime/flysystem-aliyun-oss": "Required to use aliyun oss adapter when use `league/flysystem` v1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                },
+                "hyperf": {
+                    "config": "Hyperf\\Filesystem\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hyperf\\Filesystem\\": "src/"
+                },
+                "files": [
+                    "src/Adapter/AliyunOssHook.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "flysystem integration for hyperf",
+            "keywords": [
+                "hyperf",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/hyperf/filesystem/issues",
+                "source": "https://github.com/hyperf/filesystem/tree/v2.2.17"
+            },
+            "time": "2021-11-17T11:20:49+00:00"
+        },
+        {
             "name": "hyperf/framework",
             "version": "v2.2.14",
             "source": {
@@ -2556,6 +2617,63 @@
                 "swoole"
             ],
             "time": "2021-10-28T10:13:44+00:00"
+        },
+        {
+            "name": "hyperf/paginator",
+            "version": "v2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyperf/paginator.git",
+                "reference": "d884a12771710bce66da6ddb494f52bcbd870721"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyperf/paginator/zipball/d884a12771710bce66da6ddb494f52bcbd870721",
+                "reference": "d884a12771710bce66da6ddb494f52bcbd870721",
+                "shasum": ""
+            },
+            "require": {
+                "hyperf/contract": "~2.2.0",
+                "hyperf/utils": "~2.2.0",
+                "php": ">=7.2"
+            },
+            "suggest": {
+                "hyperf/event": "Reqiured to use PageResolverListener.",
+                "hyperf/framework": "Reqiured to use PageResolverListener.",
+                "hyperf/http-server": "Reqiured to use PageResolverListener."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                },
+                "hyperf": {
+                    "config": "Hyperf\\Paginator\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hyperf\\Paginator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A paginator component for hyperf.",
+            "homepage": "https://hyperf.io",
+            "keywords": [
+                "hyperf",
+                "paginator",
+                "php"
+            ],
+            "support": {
+                "docs": "https://hyperf.wiki",
+                "issues": "https://github.com/hyperf/hyperf/issues",
+                "pull-request": "https://github.com/hyperf/hyperf/pulls",
+                "source": "https://github.com/hyperf/hyperf"
+            },
+            "time": "2021-07-18T06:50:14+00:00"
         },
         {
             "name": "hyperf/pool",
@@ -3371,6 +3489,216 @@
             "time": "2021-12-07T21:06:58+00:00"
         },
         {
+            "name": "lcobucci/jwt",
+            "version": "3.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lcobucci/jwt.git",
+                "reference": "c1123697f6a2ec29162b82f170dd4a491f524773"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/c1123697f6a2ec29162b82f170dd4a491f524773",
+                "reference": "c1123697f6a2ec29162b82f170dd4a491f524773",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "php": "^5.6 || ^7.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "~1.5",
+                "phpmd/phpmd": "~2.2",
+                "phpunit/php-invoker": "~1.1",
+                "phpunit/phpunit": "^5.7 || ^7.3",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Lcobucci\\JWT\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Luís Otávio Cobucci Oblonczyk",
+                    "email": "lcobucci@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple library to work with JSON Web Token and JSON Web Signature",
+            "keywords": [
+                "JWS",
+                "jwt"
+            ],
+            "support": {
+                "issues": "https://github.com/lcobucci/jwt/issues",
+                "source": "https://github.com/lcobucci/jwt/tree/3.3.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/lcobucci",
+                    "type": "github"
+                },
+                {
+                    "url": "https://www.patreon.com/lcobucci",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2020-08-20T13:22:28+00:00"
+        },
+        {
+            "name": "league/flysystem",
+            "version": "2.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem.git",
+                "reference": "4b6da3e75b5e8eee53bb5ee46ded15a532843f80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/4b6da3e75b5e8eee53bb5ee46ded15a532843f80",
+                "reference": "4b6da3e75b5e8eee53bb5ee46ded15a532843f80",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^7.2 || ^8.0"
+            },
+            "conflict": {
+                "guzzlehttp/ringphp": "<1.1.1"
+            },
+            "require-dev": {
+                "async-aws/s3": "^1.5",
+                "async-aws/simple-s3": "^1.0",
+                "aws/aws-sdk-php": "^3.132.4",
+                "composer/semver": "^3.0",
+                "ext-fileinfo": "*",
+                "friendsofphp/php-cs-fixer": "^3.2",
+                "google/cloud-storage": "^1.23",
+                "phpseclib/phpseclib": "^2.0",
+                "phpstan/phpstan": "^0.12.26",
+                "phpunit/phpunit": "^8.5 || ^9.4",
+                "sabre/dav": "^4.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "File storage abstraction for PHP",
+            "keywords": [
+                "WebDAV",
+                "aws",
+                "cloud",
+                "file",
+                "files",
+                "filesystem",
+                "filesystems",
+                "ftp",
+                "s3",
+                "sftp",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/flysystem/issues",
+                "source": "https://github.com/thephpleague/flysystem/tree/2.3.2"
+            },
+            "funding": [
+                {
+                    "url": "https://offset.earth/frankdejonge",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/frankdejonge",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-11-28T20:19:08+00:00"
+        },
+        {
+            "name": "league/mime-type-detection",
+            "version": "1.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/mime-type-detection.git",
+                "reference": "aa70e813a6ad3d1558fc927863d47309b4c23e69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/aa70e813a6ad3d1558fc927863d47309b4c23e69",
+                "reference": "aa70e813a6ad3d1558fc927863d47309b4c23e69",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.2",
+                "phpstan/phpstan": "^0.12.68",
+                "phpunit/phpunit": "^8.5.8 || ^9.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\MimeTypeDetection\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "Mime-type detection for Flysystem",
+            "support": {
+                "issues": "https://github.com/thephpleague/mime-type-detection/issues",
+                "source": "https://github.com/thephpleague/mime-type-detection/tree/1.9.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/frankdejonge",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-11-21T11:48:40+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "2.3.5",
             "source": {
@@ -3832,6 +4160,66 @@
                 "reflection"
             ],
             "time": "2020-10-12T12:39:22+00:00"
+        },
+        {
+            "name": "phper666/jwt-auth",
+            "version": "v3.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phper666/jwt-auth.git",
+                "reference": "2bcfc61379bd3aff9e3790e5011b149c481597ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phper666/jwt-auth/zipball/2bcfc61379bd3aff9e3790e5011b149c481597ba",
+                "reference": "2bcfc61379bd3aff9e3790e5011b149c481597ba",
+                "shasum": ""
+            },
+            "require": {
+                "ext-swoole": ">=4.4",
+                "lcobucci/jwt": "~3.3.0",
+                "nesbot/carbon": "^1.0 || ^2.0",
+                "php": ">=7.2"
+            },
+            "suggest": {
+                "hyperf/cache": "required hyperf/cache ~2.0.0 OR required hyperf/cache ~1.1.0",
+                "hyperf/command": "required hyperf/command ~2.0.0 OR required hyperf/command ~1.1.0",
+                "hyperf/config": "required hyperf/config ~2.0.0 OR required hyperf/config ~1.1.0",
+                "hyperf/di": "required hyperf/di ~2.0.0 OR required hyperf/di ~1.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "hyperf": {
+                    "config": "Phper666\\JWTAuth\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Phper666\\JWTAuth\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Li Yuzhao",
+                    "email": "562405704@qq.com",
+                    "homepage": "https://github.com/phper666/jwt-auth",
+                    "role": "Developer"
+                }
+            ],
+            "description": "jwt-auth Component",
+            "keywords": [
+                "hyperf",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/phper666/jwt-auth/issues",
+                "source": "https://github.com/phper666/jwt-auth/tree/v3.0.6"
+            },
+            "time": "2020-11-30T03:42:55+00:00"
         },
         {
             "name": "phpoption/phpoption",
