@@ -26,6 +26,12 @@ Router::addGroup('/backend',function () {
     Router::post('/collections/update', 'App\Controller\Backend\CollectionController@update');
     Router::get('/collections/delete/{id}', 'App\Controller\Backend\CollectionController@delete');
 
+    Router::get('/products', 'App\Controller\Backend\ProductController@index');
+    Router::get('/products/{id}', 'App\Controller\Backend\ProductController@detail');
+    Router::post('/products/create', 'App\Controller\Backend\ProductController@create');
+    Router::post('/products/update', 'App\Controller\Backend\ProductController@update');
+    Router::get('/products/delete/{id}', 'App\Controller\Backend\ProductController@delete');
+
 }, ['middleware' => [App\Middleware\JWTAuthMiddleware::class]]);
 
 Router::get('/favicon.ico', function () {

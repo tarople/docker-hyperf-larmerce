@@ -12,7 +12,7 @@
           <el-col :md="16">
               <el-card shadow="hover">
                   <div slot="header" class="clearfix">
-                    <span>Create Collection</span>                    
+                    <span>New Collection</span>                    
                   </div>
                   <el-form-item label="Title" prop="title">
                     <el-input v-model="formData.title"></el-input>
@@ -43,7 +43,7 @@
                     :headers="headers"
                     :action="uploadUrl"                  
                     :on-progress="onProgress"
-                    :on-success="handleImageSuccess">
+                    :on-success="onImageSuccess">
                     <i class="el-icon-upload"></i>
                     <div class="el-upload__text">Drop file here, or<em> click</em></div>
                     <div 
@@ -58,7 +58,7 @@
           </el-col>
 
           <el-col :md="24" class="mt-4">
-            <el-button class="fr" type="primary" :loading="loading" @click="save">Save</el-button>
+            <el-button class="fr" type="primary" :loading="loading" @click="onSave">Save</el-button>
           </el-col>
 
       </el-row>   
@@ -112,11 +112,12 @@ export default {
     onProgress() {
       this.uploading = true;
     },
-    handleImageSuccess(res) {
+    onImageSuccess(res) {
       this.uploading = false;
       this.formData.image = res.data.save_image;
       this.formData.showImage = res.data.show_image;
     },
+
     save() {
       if (this.loading) {
         return;

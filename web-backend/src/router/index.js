@@ -24,7 +24,17 @@ const routes = [
         path: '/products',
         name: 'Products',
         component: resolve => require(['../pages/product/index.vue'], resolve),
+      },      
+      {
+        path: '/products/create',
+        name: 'Create Product',
+        component: resolve => require(['../pages/product/create.vue'], resolve),
       },
+      // {
+      //   path: '/products/edit/:id',
+      //   name: 'Edit Product',
+      //   component: resolve => require(['../pages/product/edit.vue'], resolve),
+      // },
       {
         path: '/collections',
         name: 'Collections',

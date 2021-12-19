@@ -11,9 +11,10 @@
             <el-col :md="6">
                 <el-input v-model="search.title" placeholder="Title" clearable/>
             </el-col>        
-            <el-col :md="3">
-                <el-button type="primary" icon="el-icon-search" @click="getList"></el-button>                
-            </el-col>
+            <el-col :md="6">
+                <el-button type="info" @click="onSearch">Search</el-button>
+                <el-button @click="onReset">Reset</el-button>            
+            </el-col>            
         </el-row>
     </el-card>  
 
@@ -100,7 +101,7 @@ export default {
   },
 
   methods: {
-    
+
     // get collections
     getList() {
       this.loading = true;
@@ -117,7 +118,20 @@ export default {
           this.$message.error(err);
         }
       );
-    },    
+    }, 
+    
+    // search
+    onSearch() {
+      this.getList()
+    },
+
+    // reset search
+    onReset() {
+      this.searchForm = {
+        title: '',
+      }
+      this.getList()
+    },
 
     // delete
     onDelete(id) {

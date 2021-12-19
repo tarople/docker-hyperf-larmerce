@@ -5,27 +5,27 @@ declare(strict_types=1);
 namespace App\Controller\Backend;
 
 use App\Controller\AbstractController;
-use App\Model\Collection;
-use App\Request\Backend\Collection\CreateRequest;
-use App\Request\Backend\Collection\UpdateRequest;
+use App\Model\Product;
+use App\Request\Backend\Product\CreateRequest;
+use App\Request\Backend\Product\UpdateRequest;
 
-class CollectionController extends AbstractController
+class ProductController extends AbstractController
 {
 
     /**
-     * Get collections
+     * Get products
      *
      * @return void
      */
     public function index()
     {
-        $query = Collection::query();
+        $query = Product::query();
 
         if ($this->request->input('title')) {
             $query->where('title', 'like', '%' . $this->request->input('title') . '%');
         }
 
-        $query->orderBy('collection_id', 'desc');
+        $query->orderBy('product_id', 'desc');
 
         $limit = (int)$this->request->input('limit', 10);
         if ($limit > 50) {
@@ -40,56 +40,56 @@ class CollectionController extends AbstractController
     }
 
     /**
-     * Create collection
+     * Create product
      *
      * @param CreateRequest $request
      * @return array
      */
     public function create(CreateRequest $request)
     {
-        $collection = Collection::create($request->all());
+        $product = Product::create($request->all());
 
-        if ($collection) {
+        if ($product) {
             return [
                 'code' => 1,
                 'msg'  => 'success',
-                'data' => $collection,
+                'data' => $product,
             ];
         }
 
         return [
             'code' => 0,
-            'msg'  => 'Create collection error',
+            'msg'  => 'Create product error',
             'data' => (object)[]
         ];
     }
 
     /**
-     * Collection detail
+     * product detail
      *
      * @param integer $id
      * @return void
      */
     public function detail(int $id)
     {
-        $collection = Collection::find($id);
+        $product = Product::find($id);
 
         return [
             'code' => 1,
             'msg' => 'success',
-            'data' => $collection,
+            'data' => $product,
         ];
     }
 
     /**
-     * Update collection
+     * Update product
      *
      * @param UpdateRequest $request
      * @return array
      */
     public function update(UpdateRequest $request)
     {
-        $result = Collection::find($request->input('collection_id'))->update($request->all());
+        $result = Product::find($request->input('product_id'))->update($request->all());
 
         if ($result) {
             return [
@@ -101,20 +101,20 @@ class CollectionController extends AbstractController
 
         return [
             'code' => 0,
-            'msg'  => 'Update collection error',
+            'msg'  => 'Update product error',
             'data' => (object)[]
         ];
     }
 
     /**
-     * Delete collection
+     * Delete product
      *
      * @param integer $id
      * @return array
      */
     public function delete(int $id)
     {
-        $result = Collection::query()->where('collection_id', $id)->delete();
+        $result = Product::query()->where('product_id', $id)->delete();
 
         if ($result) {
             return [
@@ -126,7 +126,7 @@ class CollectionController extends AbstractController
 
         return [
             'code' => 0,
-            'msg'  => 'Delete collection error',
+            'msg'  => 'Delete product error',
             'data' => (object)[]
         ];
     }

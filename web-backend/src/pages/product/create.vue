@@ -1,10 +1,10 @@
 <template>
-  <div class="collection-container">
+  <div class="product-container">
     
     <el-breadcrumb separator-class="el-icon-arrow-right" class="mt-2">
         <el-breadcrumb-item :to="{ path: '/dashboard' }">Dashboard</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{ path: '/collections' }">Collections</el-breadcrumb-item>
-        <el-breadcrumb-item>Edit</el-breadcrumb-item>
+        <el-breadcrumb-item :to="{ path: '/products' }">Products</el-breadcrumb-item>
+        <el-breadcrumb-item>Create</el-breadcrumb-item>        
     </el-breadcrumb>
 
     <el-form :model="formData" :rules="formRules" ref="form">
@@ -12,7 +12,7 @@
           <el-col :md="16">
               <el-card shadow="hover">
                   <div slot="header" class="clearfix">
-                    <span>Edit Collection</span>                    
+                    <span>New Product</span>
                   </div>
                   <el-form-item label="Title" prop="title">
                     <el-input v-model="formData.title"></el-input>
@@ -23,17 +23,26 @@
                       placeholder="xx-xx-xx"></el-input>
                     <span class="text-xs text-muted">The “slug” is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.</span>
                   </el-form-item>
+                  <el-form-item label="Excerpt" prop="excerpt">
+                    <el-input 
+                      v-model="formData.excerpt"
+                      :autosize="{ minRows: 4}"
+                      type="textarea"></el-input>
+                  </el-form-item>
                   <el-form-item label="Description" prop="description">
                     <el-input 
-                      v-model="formData.description"
+                      v-model="formData.excerpt"
                       :autosize="{ minRows: 4}"
                       type="textarea"></el-input>
                   </el-form-item>
               </el-card>
-          </el-col>        
-          <el-col :md="8">
-              <el-card shadow="hover">
-                <el-form-item prop="image">
+
+              <el-card shadow="hover" class="mt-4">
+                  <div slot="header" class="clearfix">
+                    <span>Product Media</span>
+                  </div>
+
+                  <el-form-item prop="image">
                   <el-upload                                    
                     class="upload-container"
                     drag
@@ -48,12 +57,55 @@
                     <div class="el-upload__text">Drop file here, or<em> click</em></div>
                     <div 
                       v-loading="uploading"
-                      class="collection-image">
+                      class="product-image">
                       <img v-if="formData.image" :src="formData.showImage">
                       <input v-model="formData.image" type="hidden"/>
-                    </div>                  
+                    </div>  
+                    <div slot="tip" class="el-upload__tip">This image is visible in all product box.</div>                
                   </el-upload>
                 </el-form-item>
+
+                  <el-form-item prop="image">
+                    <el-upload
+                      action="#"
+                      list-type="picture-card"
+                      :auto-upload="false">
+                        <i slot="default" class="el-icon-plus"></i>
+                        <div slot="file" slot-scope="{file}">
+                          <img
+                            class="el-upload-list__item-thumbnail"
+                            :src="file.url" alt="">
+                          <span class="el-upload-list__item-actions">
+                            <span
+                              class="el-upload-list__item-preview"
+                              @click="handlePictureCardPreview(file)">
+                              <i class="el-icon-zoom-in"></i>
+                            </span>                            
+                            <span
+                              v-if="!disabled"
+                              class="el-upload-list__item-delete"
+                              @click="handleRemove(file)">
+                              <i class="el-icon-delete"></i>
+                            </span>
+                          </span>
+                        </div>
+                        <div slot="tip" class="el-upload__tip">These images are visible in product details page gallery. You could drag to reorder images.</div>
+                    </el-upload>
+                  </el-form-item>   
+
+                  <el-form-item prop="video">
+                    <el-input
+                      v-model="formData.video"
+                      placeholder="https://youtube..."></el-input>
+                    <span class="text-xs text-muted">Use proper link without extra parameter. Don't use short share link/embeded iframe code.</span>
+                  </el-form-item>
+
+              </el-card>
+
+          </el-col>        
+          <el-col :md="8">
+              <el-card shadow="hover">
+                
               </el-card>
           </el-col>
 
@@ -72,14 +124,12 @@ import config from "@/config";
 export default {
   data() {
     return {
-      collectionId: 0,
       uploadUrl: config.apiHost + "/backend/upload/image",
       headers: {
         Authorization: "Bearer " + this.$auth.getToken()
       },
       uploading: false,
       formData: {
-        collection_id: 0,
         title: "",
         slug: "",
         description: "",
@@ -93,7 +143,9 @@ export default {
         slug: [
           { required: true, trigger: "blur", message: "Slug is required" }
         ],
-        image: [{ required: true, message: "Image is required" }],
+        image: [
+          { required: true, message: "Image is required" }
+        ],
         description: [
           {
             required: true,
@@ -106,51 +158,19 @@ export default {
     };
   },
 
-  created() {
-    this.collectionId = this.formData.collection_id = this.$route.params.id;
-    this.getCollection();
-  },
+  created() {},
 
   methods: {
-
-    getCollection() {
-      this.$request.get(
-        "/backend/collections/" + this.collectionId,
-        {},
-        res => {
-          if (!res.code) {
-            this.$message.error(res.msg);
-            return
-          }
-          
-          this.formData.collection_id = res.data.collection_id
-          this.formData.title = res.data.title
-          this.formData.slug = res.data.slug
-          this.formData.description = res.data.description
-          this.formData.image = res.data.image
-          this.formData.showImage = config.apiHost + res.data.image
-        },
-        err => {
-          this.$message.error(err);
-        }
-      );
-    },
-
-    // uploading image
     onProgress() {
       this.uploading = true;
     },
-
-    // upload image success
     onImageSuccess(res) {
       this.uploading = false;
       this.formData.image = res.data.save_image;
       this.formData.showImage = res.data.show_image;
     },
 
-    // save
-    onSave() {
-      
+    save() {
       if (this.loading) {
         return;
       }
@@ -163,7 +183,7 @@ export default {
         this.loading = true;
 
         this.$request.post(
-          "/backend/collections/update",
+          "/backend/products/create",
           this.formData,
           res => {
             this.loading = false;
@@ -171,13 +191,16 @@ export default {
               this.$message.error(res.msg);
               return;
             }
+
             this.$message.success("success");            
+            this.$router.push({ path: "/products/" + res.data.product_id });
           },
           err => {
             this.loading = false;
             this.$message.error(err);
           }
         );
+
       });
     }
   }
@@ -190,8 +213,11 @@ export default {
   }
   .el-upload-dragger {
     position: relative;
-    width: 100% !important;
-    .collection-image {
+    width: 50%;
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+    }
+    .product-image {
       position: absolute;
       left: 0;
       top: 0;
