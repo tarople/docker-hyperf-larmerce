@@ -33,7 +33,7 @@ class Collection extends Model
         'title',
         'slug',
         'image', 'description',        
-        'status', 'sort',         
+        'status', 'sort',
         'created_at', 'updated_at'
     ];
     

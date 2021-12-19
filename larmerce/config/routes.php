@@ -21,7 +21,10 @@ Router::addGroup('/backend',function () {
     Router::post('/upload/image','App\Controller\Backend\UploadController@image');
 
     Router::get('/collections', 'App\Controller\Backend\CollectionController@index');
-    Router::get('/collections/{id}', 'App\Controller\Backend\CollectionController@edit');
+    Router::get('/collections/{id}', 'App\Controller\Backend\CollectionController@detail');
+    Router::post('/collections/create', 'App\Controller\Backend\CollectionController@create');
+    Router::post('/collections/update', 'App\Controller\Backend\CollectionController@update');
+    Router::get('/collections/delete/{id}', 'App\Controller\Backend\CollectionController@delete');
 
 }, ['middleware' => [App\Middleware\JWTAuthMiddleware::class]]);
 
