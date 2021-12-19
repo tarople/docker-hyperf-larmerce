@@ -89,7 +89,9 @@ class CollectionController extends AbstractController
      */
     public function update(UpdateRequest $request)
     {
-        $result = Collection::query()->where('collection_id')->update($request->all());
+        $result = Collection::query()
+            ->where('collection_id', $request->input('collection_id'))
+            ->update($request->all());
 
         if ($result) {
             return [
@@ -114,7 +116,7 @@ class CollectionController extends AbstractController
      */
     public function delete(int $id)
     {
-        $result = Collection::query()->where('collection_id')->delete();
+        $result = Collection::query()->where('collection_id', $id)->delete();
 
         if ($result) {
             return [

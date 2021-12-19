@@ -21,10 +21,10 @@ class AuthController extends AbstractController
     protected $jwt;
 
     /**
-     * Login
+     * Login validation
      *
      * @param LoginRequest $request
-     * @return void
+     * @return array
      */
     public function login(LoginRequest $request)
     {
@@ -62,7 +62,7 @@ class AuthController extends AbstractController
     /**
      * Logout
      *
-     * @return void
+     * @return array
      */
     public function logout()
     {
@@ -76,6 +76,11 @@ class AuthController extends AbstractController
     }
 
 
+    /**
+     * Admin info
+     *
+     * @return array
+     */
     public function info() 
     {        
         $jwtData = $this->jwt->setScene('default')->getParserData();

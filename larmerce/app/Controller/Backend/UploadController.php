@@ -12,6 +12,13 @@ use  League\Flysystem\Filesystem;
 class UploadController extends AbstractController
 {   
 
+    /**
+     * Upload image
+     *
+     * @param UploadRequest $request
+     * @param Filesystem $filesystem
+     * @return array
+     */
     public function image(UploadRequest $request, Filesystem $filesystem)
     {   
         sleep(3);
