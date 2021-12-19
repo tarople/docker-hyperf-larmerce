@@ -44,10 +44,11 @@ class AuthController extends AbstractController
             ];
         }        
 
-        $token = $this->jwt->setScene('default')->getToken([
-            'uid' => $admin->admin_id,
-            'email' => $admin->email,
-        ]);
+        $token = $this->jwt->setScene('default')
+            ->getToken([
+                'uid' => $admin->admin_id,
+                'email' => $admin->email,
+            ]);
         
         return [
             'code' => 1,
@@ -84,6 +85,7 @@ class AuthController extends AbstractController
     public function info() 
     {        
         $jwtData = $this->jwt->setScene('default')->getParserData();
+        
         if (!$jwtData) {
             return [
                 'code' => 0,
