@@ -24,8 +24,7 @@
         </router-link>
         <el-table
             class="mt-4"
-            :data="list"
-            border
+            :data="list"            
             v-loading="loading"
             style="width: 100%">
             <el-table-column
