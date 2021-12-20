@@ -58,6 +58,36 @@ div:focus {
   float: left !important;
 }
 
+.pt-0 {
+  padding-top: 0 !important;
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
+}
+
+.py-0 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.pl-0 {
+  padding-left: 0 !important;
+}
+
+.pr-0 {
+  padding-right: 0 !important;
+}
+
+.px-0 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
 .pt-1 {
   padding-top: 5px !important;
 }
@@ -82,6 +112,10 @@ div:focus {
 .px-1 {
   padding-left: 5px !important;
   padding-right: 5px !important;
+}
+
+.p-1 {
+  padding: 5px !important;
 }
 
 .pt-2 {

@@ -31,7 +31,7 @@
                   </el-form-item>
                   <el-form-item label="Description" prop="description">
                     <el-input 
-                      v-model="formData.excerpt"
+                      v-model="formData.description"
                       :autosize="{ minRows: 4}"
                       type="textarea"></el-input>
                   </el-form-item>
@@ -102,11 +102,71 @@
 
               </el-card>
 
-          </el-col>        
-          <el-col :md="8">
-              <el-card shadow="hover">
-                
+              <el-card shadow="hover" class="mt-4 mb-4">
+                  <div slot="header" class="clearfix">
+                    <span>Product Price & Stocks</span>
+                  </div>
               </el-card>
+
+          </el-col>        
+          <el-col :md="8">              
+
+              <el-card shadow="hover">
+                <div slot="header" class="clearfix">
+                  <span>Publish</span>
+                </div>
+                <div>
+                  <el-form-item label="Visibility">
+                    <el-switch 
+                      v-model="formData.status"
+                      active-color="#13ce66"                    
+                      active-value="1"
+                      inactive-value="2"></el-switch>
+                  </el-form-item>
+                  <span class="d-block text-sm mb-2 text-muted">Set Active time</span>
+                  <el-form-item>
+                    <el-col :span="11" class="px-0">
+                      <el-date-picker 
+                        type="date" 
+                        placeholder="Start" 
+                        v-model="formData.start_time" 
+                        style="width: 100%;"></el-date-picker>
+                    </el-col>
+                    <el-col class="line" :span="2">-</el-col>
+                    <el-col :span="11" class="px-0">
+                      <el-date-picker 
+                        type="date" 
+                        placeholder="End" 
+                        v-model="formData.end_time" 
+                        style="width: 100%;"></el-date-picker>
+                    </el-col>
+                  
+                  </el-form-item>
+                </div>
+              </el-card>
+
+              <el-card shadow="hover" class="mt-4">
+                <div slot="header" class="clearfix">
+                  <span>Collection</span>
+                </div>
+
+                <el-form-item>
+                  <el-select 
+                    v-model="formData.collections" 
+                    multiple 
+                    placeholder="Collections"
+                    style="width: 100%">
+                    <el-option
+                      v-for="item in collections"
+                      :key="item.value"
+                      :label="item.label"
+                      :value="item.value">
+                    </el-option>
+                  </el-select>
+                </el-form-item>
+
+              </el-card>
+
           </el-col>
 
           <el-col :md="24" class="mt-4">
@@ -134,8 +194,21 @@ export default {
         slug: "",
         description: "",
         image: "",
-        showImage: ""
+        showImage: "",
+        collections: []
       },
+      collections: [
+        {
+          value: '选项1',
+          label: '黄金糕'
+        }, {
+          value: '选项2',
+          label: '双皮奶'
+        }, {
+          value: '选项3',
+          label: '蚵仔煎'
+        }
+      ],
       formRules: {
         title: [
           { required: true, trigger: "blur", message: "Title is required" }
@@ -143,9 +216,7 @@ export default {
         slug: [
           { required: true, trigger: "blur", message: "Slug is required" }
         ],
-        image: [
-          { required: true, message: "Image is required" }
-        ],
+        image: [{ required: true, message: "Image is required" }],
         description: [
           {
             required: true,
@@ -170,7 +241,7 @@ export default {
       this.formData.showImage = res.data.show_image;
     },
 
-    save() {
+    onSave() {
       if (this.loading) {
         return;
       }
@@ -192,7 +263,7 @@ export default {
               return;
             }
 
-            this.$message.success("success");            
+            this.$message.success("success");
             this.$router.push({ path: "/products/" + res.data.product_id });
           },
           err => {
@@ -200,7 +271,6 @@ export default {
             this.$message.error(err);
           }
         );
-
       });
     }
   }
